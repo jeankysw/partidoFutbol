@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Micro+5&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    @if (mostrarganador) {
+        <div class="content-ganador">
+            <img class="img" src="../assets/images (2).jpg" alt="">
+            <div class="content-infor">
+                <img src="../assets/copa.png" alt="">
+            <h1 class="fontfamily fontzize" >El equipo ganador es  </h1>
+            <h1 class="fontfamily h1" > {{equipoganador}} </h1>
+                <button (click)="aceptar()" class="aceptar fontfamily">Aceptar</button>
+            </div>
+        </div>
+    }
+    @if (mostrarform) {
+    <div class="content-informacion">
+        <form action="" >
+            <h3 class="cerrar fontfamily" (click)="ocultarform()" >X</h3>
+            <div class="content-input">
+                <h1 class="fontfamily">Datos del partido</h1>
+                <input class="fontfamily" name ="nameequipo"   placeholder="Equipo 1"  [(ngModel)]="nameequipo" type="text" >
+                <input  class="fontfamily" name ="nameequipo2" placeholder="Equipo 2"  [(ngModel)]="nameequipo2" type="text">
+                <select value="Selecione tiempo" class="fontfamily" [(ngModel)]="tiempoo"  [(ngModel)]="personalisado" name="select" >
+                    <option class="fontfamily" value="2">2 minutos</option>
+                    <option  class="fontfamily"value="5">5 minutos</option>
+                    <option   class="fontfamily"value="true">Personalizado</option>
+                  </select>
+                  @if (personalisado==="true") {
+                    <input type="number"class="fontfamily" name ="nameequip" [(ngModel)]="tiempoo">
+                  }
+            </div>
+            <div class="content-btn">
+                <button class="fontfamily" (click)="enviarr()">Enviar</button>
+            </div>
+        </form>
+    </div>
+}
+    <div class="content_principal">
+        <img src="../assets/images (2).jpg" alt="">
+        <div class="content_resultado">
+            <div class="sub_content_name">  
+                <h1>{{equipo11}}</h1><h2 (click)="mostraform()">Vs</h2><h1>{{equipo22}}</h1>
+            </div>
+            <div class="sub_content_marcador">
+                <div class="content_marcador">
+                    <h1>{{equipo1}}</h1>
+                </div>
+                <div class="content_time">
+                    <h2>TIME</h2>
+                    <h1>{{ tiempoo }}:{{ segundos }}</h1>
+                </div>
+                <div class="content_marcador">
+                    <h1>{{equipo2}}</h1>
+                </div>
+            </div>
+            <div class="sub_content" >
+                <div class="content-center">  <h1>VISITANTE</h1> </div>
+                <div class="content-center">
+                    @if (mostrarconteen) {<p class="fontfamily fonzize" >{{"Su partido empezara en:"+" "+mensajeTiempo}}  </p> } 
+                    @if (mostrarconteen2) {<p class="fontfamily fonzize"(click)="enviar()" >Ver Estadisticas</p> } 
+                    @if (tiempofinal) {<p class="fontfamily fonzize" >{{"Su partido terminara en:"+" "+segundos}}  </p>}
+                    @if (mostrarempate) {<p class="fontfamily fonzize" >{{equipoganador}}  </p>} </div>
+                <div class="content-center"><h1>LOCAL</h1></div>
+              
+            </div>
+
+        </div> 
+        <div class="content-hijo">
+            <app-hijopartido [estadisticas]="segundos" [estadisticas2]="tiempoo"  [nombreequipo1]="equipo11" [btnanotardesactivar]="btnanotar" [mensajetiempo]="mensaje" [estadisticas]="estadisticas"    (enviarDatosAlPadre)="recibirDatosDelHijo($event) " [nombreequipo2]="equipo22"></app-hijopartido>
+        </div>
+        <div class="content-comenzar">
+            <button  class="fontfamily"[disabled]="botonActivo" (click)="iniciarCronometro()">comenzar</button>
+        </div>
+    </div>
+    
+</body>
+</html>

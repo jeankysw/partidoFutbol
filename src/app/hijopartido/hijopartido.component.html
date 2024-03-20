@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="content-botones">
+  
+       
+        <div class="content-btn">
+            @if (oculttar) { 
+                <div class="conten-imagen-array-izquierdo">
+                   @for (item of arrayimagenequipos; track $index) {
+                       <div (click)="  cambiarimg(item.imagen)" class="content-imagen-equipo">
+                         <img [src]="item.imagen" alt="">
+                         <h5 class="font-zize">{{item.name}}</h5>
+                       </div>
+                   }
+               </div>
+            }
+            <div class="imgen-mostrar">
+                <img [src]="imagen" alt="" (click)="mostrarimgg()">
+            </div>
+            <h4><span>{{marcadoreqipo1}}</span></h4>
+            <select  [(ngModel)]="namejugador" >
+                @for ( item of jugadoresEquipo1 ;track $index) {<option [value]="item">{{item}}</option>}
+                </select>
+        
+            <button [disabled]="btnanotardesactivar"  (click)="anotargol1()">Anotar</button>
+        </div>
+       
+            <div class="content-video">
+                @if(mensajetiempo){
+                <video controls autoplay src="../../assets/tiempooviedo.mp4">      
+                </video>
+            }
+            </div>
+       
+            <div class="content-btn">
+                @if (oculttar2) { 
+                    <div class="conten-imagen-array">
+                       @for (item of arrayimagenequipos; track $index) {
+                           <div (click)="  cambiarimg2(item.imagen)" class="content-imagen-equipo">
+                             <img [src]="item.imagen" alt="" >
+                             <h5 class="font-zize">{{item.name}}</h5>
+                           </div>
+                       }
+                   </div>
+               }
+                
+                <div class="imgen-mostrar">
+                    <img [src]="imagen2" alt="" (click)="mostrarimgg2()">
+                </div>
+                <h4><span>{{marcadoreqipo2  }}</span></h4>
+                    <select  [(ngModel)]="namejugador" >
+                    @for ( item of jugadoresEquipo1 ;track $index) {<option [value]="item">{{item}}</option>}
+                    </select>
+            
+                <button [disabled]="btnanotardesactivar" (click)="anotargol2()">Anotar</button>
+
+        </div>
+    
+        
+     
+    </div>
+    
+    
+
+
+
+</body>
+</html>
